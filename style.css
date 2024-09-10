@@ -37,14 +37,12 @@ main {
 
 h2 {
   color: #d6edfa;
-  text-shadow:
-     2px 2px 2px  #002855;
+  text-shadow: 2px 2px 2px #002855;
 }
 
 h4 {
   color: #d6edfa;
-  text-shadow: 
-      2px 2px 2px #002855;
+  text-shadow: 2px 2px 2px #002855;
 }
 
 .For {
@@ -56,10 +54,7 @@ h4 {
   transform: translate(-50%, -50%);
   transition: transform 0.2s ease;
 
-  text-shadow:
-   -2px -2px 0 #002855, 
-   2px -2px 0 #002855,
-   -2px 2px 0 #002855,
+  text-shadow: -2px -2px 0 #002855, 2px -2px 0 #002855, -2px 2px 0 #002855,
     2px 2px 0 #002855;
 }
 
@@ -80,10 +75,8 @@ body {
 .For.moved-up {
   transform: translate(-50%, -100px);
 }
-#time{
+#time {
   text-align: center;
   color: #d6edfa;
-    text-shadow:
-     2px 2px 2px #002855;
-
+  text-shadow: 2px 2px 2px #002855;
 }
