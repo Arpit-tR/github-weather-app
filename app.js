@@ -4,8 +4,13 @@ const search = document.querySelector("#search");
 const weather = document.querySelector("#weather");
 const title = document.querySelector(".For");
 const wf = document.querySelector(".wf");
+const timeElement = document.querySelector("#time");
 
 const defaultBackgroundImageUrl = "/Weather/back.jpg";
+
+document.addEventListener("contextmenu", function (event) {
+  event.preventDefault();
+});
 
 const getWeather = async (city) => {
   if (!city) {
@@ -13,6 +18,8 @@ const getWeather = async (city) => {
     wf.style.backgroundImage = `url(${defaultBackgroundImageUrl})`;
     wf.style.backgroundSize = "cover";
     wf.style.backgroundPosition = "center";
+    timeElement.style.display = "none";
+    title.classList.add("moved-up");
     return;
   }
 
@@ -22,6 +29,7 @@ const getWeather = async (city) => {
   const data = await response.json();
   title.classList.add("moved-up");
   showWeather(data);
+  showTime(data);
 };
 
 const showWeather = (data) => {
@@ -30,10 +38,11 @@ const showWeather = (data) => {
     wf.style.backgroundImage = `url(${defaultBackgroundImageUrl})`;
     wf.style.backgroundSize = "cover";
     wf.style.backgroundPosition = "center";
+    timeElement.style.display = "none";
+    title.classList.add("moved-up");
     return;
   }
 
-  console.log(data);
   weather.innerHTML = `
         <div>
             <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="">
@@ -41,7 +50,7 @@ const showWeather = (data) => {
         <div>
             <h2>${data.main.temp} ℃</h2>            
             <h4>${data.weather[0].main}</h4>
-        </div>
+       </div>
     `;
 
   const iconCode = data.weather[0].icon;
@@ -57,3 +66,14 @@ form.addEventListener("submit", function (event) {
   event.preventDefault();
   getWeather(search.value);
 });
+
+const showTime = (data) => {
+  const timezoneOffset = data.timezone; // Timezone offset in seconds from UTC
+  const localDate = new Date(new Date().getTime() + timezoneOffset * 1000);
+
+  const hours = localDate.getUTCHours().toString().padStart(2, "0");
+  const minutes = localDate.getUTCMinutes().toString().padStart(2, "0");
+  const seconds = localDate.getUTCSeconds().toString().padStart(2, "0");
+
+  timeElement.innerHTML = `<h3>Current Time: ${hours}:${minutes}:${seconds}</h3>`;
+};
