@@ -75,8 +75,5 @@ body {
 }
 
 .For.moved-up {
-  transform: translate(
-    -50%,
-    -100px
-  ); /* Adjust this value to move the title upwards */
+  transform: translate(-50%, -100px);
 }
