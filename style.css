@@ -54,7 +54,7 @@ h4 {
   top: 39%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: transform 0.1s ease;
+  transition: transform 0.2s ease;
 
   text-shadow: -2px -2px 0 #002855, 2px -2px 0 #002855, -2px 2px 0 #002855,
     2px 2px 0 #002855;
