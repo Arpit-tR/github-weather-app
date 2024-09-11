@@ -8,6 +8,20 @@ const timeElement = document.querySelector("#time");
 
 const defaultBackgroundImageUrl = "/Weather/back.jpg";
 
+const updatePosition = () => {
+  const forElement = document.querySelector(".For");
+
+  if (window.innerHeight < 600) {
+    forElement.style.top = "25%";
+    forElement.style.font = "20px";
+  } else {
+    forElement.style.top = "39%";
+    forElement.style.font = "33px";
+  }
+};
+window.addEventListener("resize", updatePosition);
+updatePosition();
+
 document.addEventListener("contextmenu", function (event) {
   event.preventDefault();
 });
@@ -20,6 +34,7 @@ const getWeather = async (city) => {
     wf.style.backgroundPosition = "center";
     timeElement.style.display = "none";
     title.classList.remove("moved-up");
+
     return;
   }
 
@@ -27,10 +42,9 @@ const getWeather = async (city) => {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
   const response = await fetch(url);
   title.classList.add("moved-up");
-  const data = await response.json();  
+  const data = await response.json();
   showWeather(data);
   showTime(data);
-
 };
 
 const showWeather = (data) => {
@@ -41,6 +55,7 @@ const showWeather = (data) => {
     wf.style.backgroundPosition = "center";
     timeElement.style.display = "none";
     title.classList.remove("moved-up");
+
     return;
   }
 
@@ -69,7 +84,7 @@ form.addEventListener("submit", function (event) {
 });
 
 const showTime = (data) => {
-  const timezoneOffset = data.timezone; 
+  const timezoneOffset = data.timezone;
   const localDate = new Date(new Date().getTime() + timezoneOffset * 1000);
 
   const hours = localDate.getUTCHours().toString().padStart(2, "0");
