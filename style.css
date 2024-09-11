@@ -60,6 +60,13 @@ h4 {
   text-shadow: -2px -2px 0 #002855, 2px -2px 0 #002855, -2px 2px 0 #002855,
     2px 2px 0 #002855;
 }
+@media (max-width: 500px) and (max-height: 400px) {
+  .For {
+    
+    top: 33%;
+    transform: translate(-50%, -35%);
+  }
+}
 
 .wf {
   background-image: url(/Weather/back.jpg);
