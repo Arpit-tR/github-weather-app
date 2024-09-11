@@ -27,11 +27,14 @@ main {
 }
 
 #search {
+  color: #005bc4;
   font-size: 25px;
+  text-align: center;
+
   padding: 10px;
   border-radius: 25px;
   border: none;
-  outline: none;
+  outline: #005bc4;
   box-shadow: 0px 0px 5px grey;
 }
 
@@ -69,7 +72,12 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  transition: background-image 0.2s ease-in-out;
+  transition: background-image 0.1s ease-in-out;
+  height: 100%;
+}
+html {
+  overflow: hidden;
+  height: 100%;
 }
 
 .For.moved-up {

@@ -14,32 +14,33 @@ document.addEventListener("contextmenu", function (event) {
 
 const getWeather = async (city) => {
   if (!city) {
-    weather.innerHTML = `<h2>Enter City</h2>`;
+    weather.innerHTML = `<h2>Enter city</h2>`;
     wf.style.backgroundImage = `url(${defaultBackgroundImageUrl})`;
     wf.style.backgroundSize = "cover";
     wf.style.backgroundPosition = "center";
     timeElement.style.display = "none";
-    title.classList.add("moved-up");
+    title.classList.remove("moved-up");
     return;
   }
 
   weather.innerHTML = `<h2>Loading...</h2>`;
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
   const response = await fetch(url);
-  const data = await response.json();
   title.classList.add("moved-up");
+  const data = await response.json();  
   showWeather(data);
   showTime(data);
+
 };
 
 const showWeather = (data) => {
   if (data.cod === "404") {
-    weather.innerHTML = `<h2>City Not Found</h2>`;
+    weather.innerHTML = `<h2>City not found</h2>`;
     wf.style.backgroundImage = `url(${defaultBackgroundImageUrl})`;
     wf.style.backgroundSize = "cover";
     wf.style.backgroundPosition = "center";
     timeElement.style.display = "none";
-    title.classList.add("moved-up");
+    title.classList.remove("moved-up");
     return;
   }
 
@@ -48,7 +49,7 @@ const showWeather = (data) => {
             <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="">
         </div>
         <div>
-            <h2>${data.main.temp} ℃</h2>            
+            <h2>${data.main.temp}&deg;C</h2>            
             <h4>${data.weather[0].main}</h4>
        </div>
     `;
@@ -68,7 +69,7 @@ form.addEventListener("submit", function (event) {
 });
 
 const showTime = (data) => {
-  const timezoneOffset = data.timezone; // Timezone offset in seconds from UTC
+  const timezoneOffset = data.timezone; 
   const localDate = new Date(new Date().getTime() + timezoneOffset * 1000);
 
   const hours = localDate.getUTCHours().toString().padStart(2, "0");
